@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block start %}
+
+
+    <h1>This is Index page!!!!!!!!!!</h1>
+    <h2>This is return by Django server.</h2> 
+    
+
+    <!--#adding url to index page-->
+    <a href="/contact">
+        Contact
+    </a>
+    | 
+    <a href="/about">
+        About
+    </a>
+
+
+
+    {{peoples}}
+
+    <table class="container">  <!--creating table with views list of 'peopl'-->
+        <tr>
+          <th>S.No</th>
+          <th>Name</th>
+          <th>age </th>
+          <th>can vote</th>
+          
+        </tr>
+
+        {% for people in peoples %}
+        <tr>
+          <td>{{forloop.counter}}</td>
+          <td>{{people.name}}</td>
+          <td>{{people.age}}</td>
+          <td{% if people.age <= 18%} style="background-color:red"{% endif %}>
+            {% if people.age >= 18 %}
+            👍
+            {% else %}
+            👎
+            {% endif %}
+          </td>
+            
+        </tr>
+        
+        {% endfor %}
+
+    </table>
+    <p> {% if "banana" in vegetables %}  <!--elseif condition-->
+        yes availavle
+        {% elif "tomato" in vegetables %}
+        yes availavle
+        {% else %}
+        Not available
+        {% endif %}
+
+    </p>
+    
+{% endblock %}
